@@ -22,7 +22,8 @@ async def report_on_file_upload(upload:UploadFile) -> FileUploadReport:
 
     # Create and invoke the Report Agent to generate ESG report
     report_agent = ReportAgent(config.report_agent_llm, config.report_agent_model)
-    report = await report_agent.invoke(file["content"])
+    content = file["content"] or ""
+    report = await report_agent.invoke(content)
 
     clear_scratchpad()
 
