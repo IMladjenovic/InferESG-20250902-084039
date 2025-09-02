@@ -1,7 +1,6 @@
 from contextlib import asynccontextmanager
 import logging.config
 import os
-from typing import NoReturn
 from fastapi import FastAPI, HTTPException, Response, WebSocket, UploadFile
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
@@ -144,7 +143,7 @@ async def fetch_file(id: str):
 
 
 @app.websocket("/ws")
-async def websocket_endpoint(websocket: WebSocket) -> NoReturn:
+async def websocket_endpoint(websocket: WebSocket) -> None:
     await connection_manager.connect(websocket)
     try:
         while True:
